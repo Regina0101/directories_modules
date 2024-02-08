@@ -27,6 +27,15 @@ def show_all_numbers(contacts):
             result += f"{name}: {phone}\n"
         return result.strip()
 
+def change_number(args, contacts):
+    if len(args) !=1:
+        return "Invalid number of arguments. Please provide a name."
+    name = args[0]
+    if name in contacts:
+        contacts[name] = input("Enter your new number: ")
+    return contacts
+
+
 def main():
     contacts = {}
     print("Welcome to the assistant bot!")
@@ -46,6 +55,8 @@ def main():
             print(show_phone(args, contacts))
         elif command == "all_numbers":
             print(show_all_numbers(contacts))
+        elif command == "change":
+            print(change_number(args, contacts))
         else:
             print("Invalid command.")
 
