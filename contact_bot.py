@@ -27,12 +27,22 @@ def show_all_numbers(contacts):
             result += f"{name}: {phone}\n"
         return result.strip()
 
-def change_number(args, contacts, user_input):
-    if len(args) !=1:
-        return "Invalid number of arguments. Please provide a name."
-    name = args[0]
+# def change_number(args, contacts, user_input):
+#     if len(args) !=1:
+#         return "Invalid number of arguments. Please provide a name."
+#     name = args[0]
+#     if name in contacts:
+#         contacts[name] = user_input
+#     return contacts
+
+def change_number(args, contacts):
+    if len(args) != 2:
+        return "Invalid number of arguments. Please provide name and phone number."
+    name, phone = args
     if name in contacts:
-        contacts[name] = user_input
+        contacts[name] = phone
+    else:
+        return "No contacts with this name "
     return contacts
 
 
@@ -57,8 +67,8 @@ def main():
         elif command == "all":
             print(show_all_numbers(contacts))
         elif command == "change":
-            user_input = input("Enter a new number: ")
-            print(change_number(args, contacts, user_input))
+            # user_input = input("Enter a new number: ")
+            print(change_number(args, contacts))
         else:
             print("Invalid command.")
 
